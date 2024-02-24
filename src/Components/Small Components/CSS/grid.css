@@ -7,12 +7,16 @@
 .grid-heading{
     display: flex;
     justify-content: space-between;
-    /* background-color: powderblue; */
 }
 .grid-heading i{
     font-size: 1.5em;
 }
 .grids-data{
-    width: 100%;
-    background-color: aliceblue;
+    font-size: 2em;
+    display: flex;
+    gap: 3px;
+}
+.grids-data .units{
+    display: flex;
+    align-items: end;
 }

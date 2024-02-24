@@ -25,13 +25,13 @@ function Homepage() {
 
     const fetchData = async (search) => {
         const fetchedData = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${search}&aqi=yes`)
-        const obj = await fetchedData.json()
-        console.log(obj);
+        const obj = await fetchedData.json();
         const { humidity, wind_kph, precip_in, uv, feelslike_c ,temp_c} = obj.current
         const { icon,text} = obj.current.condition
 
         const {name,country,localtime} = obj.location
         const {sunrise,sunset} = obj.forecast.forecastday[0].astro
+        const {daily_chance_of_rain} = obj.forecast.forecastday[0].day
         setMain({
             city: name,
             country: country,
@@ -43,12 +43,12 @@ function Homepage() {
             condition: text
         })
         setGridData([
-            { name: 'Humidity', icon: 'bx bxs-droplet', data: humidity },
-            { name: 'Wind', icon: 'bx bx-wind', data: wind_kph },
-            { name: 'Rain', icon: 'bx bx-cloud-rain', data: precip_in },
+            { name: 'Humidity',unit:'%', icon: 'bx bxs-droplet', data: humidity },
+            { name: 'Wind', unit:'kph',icon: 'bx bx-wind', data: wind_kph },
+            { name: 'Rain', unit:'inch',icon: 'bx bx-cloud-rain', data: precip_in },
             { name: 'UV Index', icon: 'bx bx-sun', data: uv },
-            { name: 'Feels Like', icon: 'bx bxs-thermometer', data: feelslike_c },
-            { name: 'Chance of Rain', icon: 'bx bx-water', data: 0 }
+            { name: 'Feels Like',icon: 'bx bxs-thermometer', data: Math.floor(feelslike_c) },
+            { name: 'Chance of Rain',unit:'%', icon: 'bx bx-water', data: daily_chance_of_rain }
         ])
     }
     useEffect(() => {
@@ -97,7 +97,6 @@ function Homepage() {
                         <div className="temp">
                             <h2>{main.temperature}&deg;</h2>
                             <div className="type">
-                                
                                 <p>{main.condition}</p>
                             </div>
                         </div>
@@ -116,6 +115,8 @@ function Homepage() {
                             <div className="upcoming">
                                 <h6>Upcoming Hours</h6>
                                 <button type='button'>Next Day &gt;</button>
+                            </div>
+                            <div className="chart">
                             </div>
                         </div>
                         <div className="more-details">

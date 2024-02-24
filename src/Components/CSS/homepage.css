@@ -1,0 +1,124 @@
+p{
+    padding: 0;
+    margin: 0;
+}
+.container-main{
+    height: 100dvh;
+    width: 100vw;
+    /* background-color: blueviolet; */
+}
+section{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: linear-gradient(to right, #abbcca, #0041f3);
+}
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 30%;
+    color: #fff;
+    padding: 40px;
+}
+.add-location{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: ; */
+}
+.add-location i{
+    font-size: 1.5em;
+}
+.add-location .switch-deg{
+    display: flex;
+    /* background-color: red; */
+    gap: 5px;
+}
+.location-date-sun{
+    display: flex;
+    justify-content: space-between;
+}
+.location-date-sun .location{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.date p{
+    font-size: 0.8em;
+    font-weight: 300;
+}
+.temp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.temp .type{
+    display: flex;
+    gap: 5px;
+}
+.temp h2{
+    font-size: 7em;
+    font-weight: 400;
+}
+aside{
+    width: 70%;
+    /* border: 1px solid; */
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    background-color: aliceblue;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.welcome-text-logo{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: #74d8fc; */
+    align-items: center;
+}
+.welcome-text-logo .text{
+    line-height: 10px;
+}
+.welcome-text-logo .text p:nth-child(2){
+    font-weight: 500;
+    color: #797676;
+}
+.upcoming-card{
+    width: 100%;
+    height: 30%;
+    border-radius: 40px;
+    padding: 20px;
+    /* background-color: #74d8fc; */
+    box-shadow: 0px 5px 19px 0px #d4d4d4;
+}
+.upcoming{
+    display: flex;
+    justify-content: space-between;
+}
+.upcoming button{
+    background-color: #efefef;
+    border: none;
+    border-radius: 9px;
+    font-size: 0.7em;
+    font-weight: 500;
+    padding: 0 7px 0 7px;
+    transition: all 0.3s ease;
+}
+.upcoming button:hover{
+    background-color: #e4e3e3;
+    text-decoration: underline;
+}
+.more-details{
+    height: 50%;
+    /* background-color: #74d8fc; */
+}
+.grid-container{
+    /* display: flex;
+    justify-content: space-between;
+    flex-flow:row wrap; */
+    height: 100%;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3,1fr);
+}

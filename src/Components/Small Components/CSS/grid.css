@@ -1,0 +1,18 @@
+.grids-container{
+    height: 80%;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0px 5px 19px 0px #d4d4d4;
+}
+.grid-heading{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: powderblue; */
+}
+.grid-heading i{
+    font-size: 1.5em;
+}
+.grids-data{
+    width: 100%;
+    background-color: aliceblue;
+}

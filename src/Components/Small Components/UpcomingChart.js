@@ -6,7 +6,7 @@ function UpcomingChart() {
   const [lineChart, setLineChart] = useState({
     series: [{
       name: 'series1',
-      data: [31, 40, 28, 51, 42, 109, 100]
+      data: [0,0,0,0,0,0,0]
     }],
     options: {
       chart: {
@@ -19,16 +19,12 @@ function UpcomingChart() {
       stroke: {
         curve: 'smooth'
       },
-      xaxis: {
-        // type: 'datetime',
-        // categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-      },
-      yaxis:{
+      yaxis: {
         show: false
       },
-      responsive:[
+      responsive: [
         {
-          breakpoint:1000,
+          breakpoint: 1000,
           options: {
             plotOptions: {
               bar: {
@@ -52,13 +48,13 @@ function UpcomingChart() {
   return (
     <>
       <div className="upcoming-chart">
-      <Chart
-        options={lineChart.options}
-        series={lineChart.series} 
-        type="area" 
-        width={950} 
-        height={150}
-      />
+        <Chart
+          options={lineChart.options}
+          series={lineChart.series}
+          type="area"
+          width={950}
+          height={150}
+        />
       </div>
     </>
   )

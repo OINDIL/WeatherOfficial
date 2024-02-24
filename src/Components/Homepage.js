@@ -5,6 +5,8 @@ import UpcomingChart from './Small Components/UpcomingChart'
 
 
 function Homepage() {
+    const [avgTemp,setAvgTemp] = useState([])
+    // let avgTemp = []
     const [gridData, setGridData] = useState([
         { name: 'Humidity', icon: 'bx bxs-droplet', data: 0 },
         { name: 'Wind', icon: 'bx bx-wind', data: 0 },
@@ -25,10 +27,19 @@ function Homepage() {
     })
 
     const fetchData = async (search) => {
-        const fetchedData = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${search}&aqi=yes`)
+        const fetchedData = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=7&q=${search}&aqi=yes`)
         const obj = await fetchedData.json();
         const { humidity, wind_kph, precip_in, uv, feelslike_c ,temp_c} = obj.current
         const { icon,text} = obj.current.condition
+
+
+        // const {forecastday} = obj.forecast
+        setAvgTemp(obj.forecast.forecastday)
+        // forecastday.forEach((item)=>{
+        //     setAvgTemp(item.day.avgtemp_c);
+        // })
+        console.log(avgTemp)
+
 
         const {name,country,localtime} = obj.location
         const {sunrise,sunset} = obj.forecast.forecastday[0].astro

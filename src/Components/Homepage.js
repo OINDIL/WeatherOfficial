@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './CSS/homepage.css'
 import Grid from './Small Components/Grid'
+import UpcomingChart from './Small Components/UpcomingChart'
 
 
 function Homepage() {
@@ -117,6 +118,7 @@ function Homepage() {
                                 <button type='button'>Next Day &gt;</button>
                             </div>
                             <div className="chart">
+                                <UpcomingChart/>
                             </div>
                         </div>
                         <div className="more-details">

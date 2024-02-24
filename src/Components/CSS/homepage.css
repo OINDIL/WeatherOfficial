@@ -72,6 +72,7 @@ aside{
     gap: 40px;
 }
 .welcome-text-logo{
+    height: 10%;
     display: flex;
     justify-content: space-between;
     /* background-color: #74d8fc; */
@@ -86,11 +87,17 @@ aside{
 }
 .upcoming-card{
     width: 100%;
-    height: 30%;
+    height: 40%;
     border-radius: 40px;
     padding: 20px;
     /* background-color: #74d8fc; */
     box-shadow: 0px 5px 19px 0px #d4d4d4;
+}
+.upcoming-card .chart{
+    display: flex;
+    align-items: center;
+    /* background-color: #0041f3; */
+   
 }
 .upcoming{
     display: flex;

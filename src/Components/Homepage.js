@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './CSS/homepage.css'
 import Grid from './Small Components/Grid'
-import UpcomingChart from './Small Components/UpcomingChart'
-
+import AreaChart from './Small Components/AreaChart'
 
 function Homepage() {
-    const [avgTemp,setAvgTemp] = useState([])
-    // let avgTemp = []
+    const [chartArr,setChartArr] = useState([0,0,0,0,0,0,0])
+    let arr = []
     const [gridData, setGridData] = useState([
         { name: 'Humidity', icon: 'bx bxs-droplet', data: 0 },
         { name: 'Wind', icon: 'bx bx-wind', data: 0 },
@@ -29,21 +28,19 @@ function Homepage() {
     const fetchData = async (search) => {
         const fetchedData = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=7&q=${search}&aqi=yes`)
         const obj = await fetchedData.json();
-        const { humidity, wind_kph, precip_in, uv, feelslike_c ,temp_c} = obj.current
-        const { icon,text} = obj.current.condition
-
-
-        // const {forecastday} = obj.forecast
-        setAvgTemp(obj.forecast.forecastday)
-        // forecastday.forEach((item)=>{
-        //     setAvgTemp(item.day.avgtemp_c);
-        // })
-        console.log(avgTemp)
-
-
-        const {name,country,localtime} = obj.location
-        const {sunrise,sunset} = obj.forecast.forecastday[0].astro
-        const {daily_chance_of_rain} = obj.forecast.forecastday[0].day
+        const { humidity, wind_kph, precip_in, uv, feelslike_c, temp_c } = obj.current
+        const { icon, text } = obj.current.condition
+        const {forecastday} = obj.forecast;
+        // console.log(forecastday);
+        forecastday.forEach((item)=>{
+            arr.push(item.day.avgtemp_c)
+        })
+        // console.log('original arr'+arr);
+        setChartArr(arr)
+        // console.log('chart arr'+chartArr);
+        const { name, country, localtime } = obj.location
+        const { sunrise, sunset } = obj.forecast.forecastday[0].astro
+        const { daily_chance_of_rain } = obj.forecast.forecastday[0].day
         setMain({
             city: name,
             country: country,
@@ -55,12 +52,12 @@ function Homepage() {
             condition: text
         })
         setGridData([
-            { name: 'Humidity',unit:'%', icon: 'bx bxs-droplet', data: humidity },
-            { name: 'Wind', unit:'kph',icon: 'bx bx-wind', data: wind_kph },
-            { name: 'Rain', unit:'inch',icon: 'bx bx-cloud-rain', data: precip_in },
+            { name: 'Humidity', unit: '%', icon: 'bx bxs-droplet', data: humidity },
+            { name: 'Wind', unit: 'kph', icon: 'bx bx-wind', data: wind_kph },
+            { name: 'Rain', unit: 'inch', icon: 'bx bx-cloud-rain', data: precip_in },
             { name: 'UV Index', icon: 'bx bx-sun', data: uv },
-            { name: 'Feels Like',icon: 'bx bxs-thermometer', data: Math.floor(feelslike_c) },
-            { name: 'Chance of Rain',unit:'%', icon: 'bx bx-water', data: daily_chance_of_rain }
+            { name: 'Feels Like', icon: 'bx bxs-thermometer', data: Math.floor(feelslike_c) },
+            { name: 'Chance of Rain', unit: '%', icon: 'bx bx-water', data: daily_chance_of_rain }
         ])
     }
     useEffect(() => {
@@ -129,7 +126,7 @@ function Homepage() {
                                 <button type='button'>Next Day &gt;</button>
                             </div>
                             <div className="chart">
-                                <UpcomingChart/>
+                                {/* <AreaChart chartarr={chartArr}/> */}
                             </div>
                         </div>
                         <div className="more-details">

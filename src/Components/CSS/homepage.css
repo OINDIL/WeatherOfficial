@@ -54,7 +54,11 @@ main{
 }
 .temp .type{
     display: flex;
+    align-items: center;
     gap: 5px;
+}
+.temp .type p{
+    font-size: 1.4em;
 }
 .temp h2{
     font-size: 7em;

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './CSS/homepage.css'
 import Grid from './Small Components/Grid'
-import AreaChart from './Small Components/AreaChart'
+import Chart from 'react-apexcharts'
 
 function Homepage() {
-    const [chartArr,setChartArr] = useState([0,0,0,0,0,0,0])
-    let arr = []
+    const [chartArr, setChartArr] = useState([0,0,0,0,0,0,0])
+    let arr = [] // this is for chart
     const [gridData, setGridData] = useState([
         { name: 'Humidity', icon: 'bx bxs-droplet', data: 0 },
         { name: 'Wind', icon: 'bx bx-wind', data: 0 },
@@ -30,14 +30,12 @@ function Homepage() {
         const obj = await fetchedData.json();
         const { humidity, wind_kph, precip_in, uv, feelslike_c, temp_c } = obj.current
         const { icon, text } = obj.current.condition
-        const {forecastday} = obj.forecast;
-        // console.log(forecastday);
+        const { forecastday } = obj.forecast;
         forecastday.forEach((item)=>{
-            arr.push(item.day.avgtemp_c)
+            arr.push(item.day.avgtemp_c);
         })
-        // console.log('original arr'+arr);
         setChartArr(arr)
-        // console.log('chart arr'+chartArr);
+
         const { name, country, localtime } = obj.location
         const { sunrise, sunset } = obj.forecast.forecastday[0].astro
         const { daily_chance_of_rain } = obj.forecast.forecastday[0].day
@@ -62,7 +60,7 @@ function Homepage() {
     }
     useEffect(() => {
         fetchData('kolkata')
-    }, [])
+    },[])
 
 
     return (
@@ -75,7 +73,7 @@ function Homepage() {
                             <div className="switch-deg">
                                 <p>&deg;C</p>
                                 <div className="form-check form-switch">
-                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={(e)=>{console.log(e.target.value)}}/>
                                 </div>
                                 <p>&deg;F</p>
                             </div>
@@ -106,6 +104,7 @@ function Homepage() {
                         <div className="temp">
                             <h2>{main.temperature}&deg;</h2>
                             <div className="type">
+                                <img src={`${main.icon}`} alt="" />
                                 <p>{main.condition}</p>
                             </div>
                         </div>
@@ -126,7 +125,30 @@ function Homepage() {
                                 <button type='button'>Next Day &gt;</button>
                             </div>
                             <div className="chart">
-                                {/* <AreaChart chartarr={chartArr}/> */}
+                                <Chart
+                                    type='area'
+                                    width={900}
+                                    height={150}
+                                    series={[
+                                        {
+                                            name: 'Forecast',
+                                            data: chartArr
+                                        }
+                                    ]}
+                                    options={{
+                                        title: {
+                                            style: { fontSize: 20 }
+                                        },
+                                        colors: ['#3083dc'],
+                                        stroke: { width: 0, curve: 'smooth' },
+                                        dataLabels: {
+                                            enabled: true
+                                        }
+                                    }
+                                    }
+                                >
+
+                                </Chart>
                             </div>
                         </div>
                         <div className="more-details">

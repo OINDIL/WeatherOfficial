@@ -3,9 +3,8 @@ import Chart from 'react-apexcharts';
 
 function AreaChart(props) {
   const [arr, setArr] = useState(props.chartarr);
-
   useEffect(() => {
-    setArr(props.chartarr);
+    setArr(props.chartarr)
   }, [props.chartarr]);
   return (
     <>
@@ -27,18 +26,17 @@ function AreaChart(props) {
                 show: false,
               },
             },
-            title: {
-              style: { fontSize: 20 },
-            },
             colors: ['#3083dc'],
             stroke: { width: 0, curve: 'smooth' },
-            fill: { opacity: 1, type: 'solid' },
             dataLabels: {
               enabled: true,
             },
             yaxis: {
               stepSize: 1,
             },
+            tooltip: {
+              enabled: false
+            }
           }}
         ></Chart>
       </div>

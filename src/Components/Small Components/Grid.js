@@ -1,7 +1,7 @@
 import React from 'react'
 import './CSS/grid.css'
 function Grid(props) {
-  const { name, icon, data, unit} = props.data
+  const { name, icon, data, unit,data_f,id} = props.data
   return (
     <>
       <div className="grids-container">
@@ -10,7 +10,7 @@ function Grid(props) {
           <i className={`${icon}`}></i>
         </div>
         <div className="grids-data">
-          <p>{data}</p>
+          <p>{id === 'temp' && props.active ? data_f : data}</p>
           <div className="units">
             <h6>{unit}</h6>
           </div>

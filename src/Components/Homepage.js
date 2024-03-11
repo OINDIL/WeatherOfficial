@@ -4,8 +4,10 @@ import Grid from './Small Components/Grid';
 import AreaChart from './Small Components/AreaChart';
 
 function Homepage() {
+  const [isActive, setIsActive] = useState(false); // for switch
   const [chartArr, setChartArr] = useState([0, 0, 0, 0, 0, 0, 0]);
-  let arr = [];
+  let arr = []; // for apex charts
+  // let arrF = []
   const [gridData, setGridData] = useState([
     { name: 'Humidity', icon: 'bx bxs-droplet', data: 0 },
     { name: 'Wind', icon: 'bx bx-wind', data: 0 },
@@ -20,27 +22,26 @@ function Homepage() {
     Date: 'No Data',
     sunset: 'No Data',
     sunrise: 'No Data',
-    temperature: 0,
+    temperature_c: 0,
+    temperature_f: 0,
     icon: '',
     condition: 'No Data',
   });
 
   const fetchData = async (search) => {
     const fetchedData = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=10&q=${search}&aqi=yes`
+      `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=7&q=${search}&aqi=yes`
     );
     const obj = await fetchedData.json();
-    const { humidity, wind_kph, precip_in, uv, feelslike_c, temp_c } =
-      obj.current;
+    const { humidity, wind_kph, precip_in, uv, feelslike_c,feelslike_f, temp_c,temp_f } = obj.current;
     const { icon, text } = obj.current.condition;
     const { forecastday } = obj.forecast;
-    // console.log(forecastday);
-    forecastday.forEach((item) => {
-      arr.push(item.day.avgtemp_c);
-    });
-    // console.log('original arr'+arr);
-    setChartArr(arr);
-    // console.log('chart arr'+chartArr);
+//! For chart only
+    forecastday.forEach((item)=>{
+      arr.push(item.day.avgtemp_c)
+    })
+    setChartArr(arr)
+
     const { name, country, localtime } = obj.location;
     const { sunrise, sunset } = obj.forecast.forecastday[0].astro;
     const { daily_chance_of_rain } = obj.forecast.forecastday[0].day;
@@ -50,7 +51,8 @@ function Homepage() {
       Date: localtime,
       sunset: sunset,
       sunrise: sunrise,
-      temperature: temp_c,
+      temperature_c: temp_c,
+      temperature_f: temp_f,
       icon: icon,
       condition: text,
     });
@@ -60,15 +62,10 @@ function Homepage() {
       { name: 'Rain', unit: 'inch', icon: 'bx bx-cloud-rain', data: precip_in },
       { name: 'UV Index', icon: 'bx bx-sun', data: uv },
       {
-        name: 'Feels Like',
-        icon: 'bx bxs-thermometer',
-        data: Math.floor(feelslike_c),
+        name: 'Feels Like', icon: 'bx bxs-thermometer', data: Math.floor(feelslike_c), data_f: Math.floor(feelslike_f),id:'temp'
       },
       {
-        name: 'Chance of Rain',
-        unit: '%',
-        icon: 'bx bx-water',
-        data: daily_chance_of_rain,
+        name: 'Chance of Rain', unit: '%', icon: 'bx bx-water', data: daily_chance_of_rain,
       },
     ]);
   };
@@ -76,6 +73,9 @@ function Homepage() {
     fetchData('kolkata');
   }, []);
 
+  const handleButtonClick = () => {
+    setIsActive(!isActive);
+  };
   return (
     <>
       <div className="container-main">
@@ -91,6 +91,7 @@ function Homepage() {
                     type="checkbox"
                     role="switch"
                     id="flexSwitchCheckDefault"
+                    onClick={handleButtonClick}
                   />
                 </div>
                 <p>&deg;F</p>
@@ -122,8 +123,9 @@ function Homepage() {
             </div>
 
             <div className="temp">
-              <h2>{main.temperature}&deg;</h2>
+              <h2>{isActive ? Math.floor(main.temperature_f) : Math.floor(main.temperature_c)}&deg;</h2>
               <div className="type">
+                <img src={`${main.icon}`} alt="" />
                 <p>{main.condition}</p>
               </div>
             </div>
@@ -144,7 +146,7 @@ function Homepage() {
                 <button type="button">Next Day &gt;</button>
               </div>
               <div className="chart">
-                <AreaChart chartarr={chartArr} />
+                <AreaChart chartarr={chartArr}/>
               </div>
             </div>
             <div className="more-details">
@@ -155,7 +157,7 @@ function Homepage() {
                 {gridData.map((item, index) => {
                   return (
                     <div className="grids" key={index}>
-                      <Grid data={item} />
+                      <Grid data={item} active={isActive}/>
                     </div>
                   );
                 })}

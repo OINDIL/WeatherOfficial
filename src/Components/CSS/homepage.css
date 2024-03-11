@@ -54,6 +54,7 @@ main {
 }
 .temp .type {
   display: flex;
+  align-items: center;
   gap: 5px;
 }
 .temp h2 {

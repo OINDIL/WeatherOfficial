@@ -9,10 +9,11 @@ function Homepage() {
   const [isActive, setIsActive] = useState(false); // for switch
   const [chartArr, setChartArr] = useState([0, 0, 0, 0, 0, 0, 0]);
   const [buttonClick, setButtonClick] = useState(false);
-  // const [clickOutside,setClickOutside] = useState(false);
+  const [searchedValue,setSearchedValue] = useState(null);
   //? states End
   //? Refs
   let outsideDocument = useRef();
+  //? End of Refs
   useEffect(() => {
     const handleEscapeKey = (event) => {
       if (event.key === 'Escape') {
@@ -20,21 +21,26 @@ function Homepage() {
       }
     }
 
-    const handleClickOutside = (event) => {
-      if (!outsideDocument.current.contains(event.target) && outsideDocument.current) {
-        setButtonClick(false) 
-      }
-    };
+    // const handleClickOutside = (event) => {
+    //   if (!outsideDocument.current.contains(event.target) && outsideDocument.current) {
+    //     setButtonClick(false) 
+    //   }
+    // };
 
     document.addEventListener('keydown', handleEscapeKey);
-    document.addEventListener('click', handleClickOutside);
+    // document.addEventListener('click', handleClickOutside);
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
-      document.removeEventListener('click', handleClickOutside);
+      // document.removeEventListener('click', handleClickOutside);
     };
   }, [])
-
+  //! Searched Value is coming here
+  const getData = (data)=>{
+    console.log("Data",data);
+    setSearchedValue(data)
+    console.log("SearchedValue",searchedValue)
+  }
 
   let arr = []; // for apex charts
   const [gridData, setGridData] = useState([
@@ -99,7 +105,7 @@ function Homepage() {
     ]);
   };
   useEffect(() => {
-    fetchData('kolkata');
+    fetchData(searchedValue);
   }, []);
 
   const handleButtonClick = () => {
@@ -108,7 +114,7 @@ function Homepage() {
   return (
     <>
       <div className="container-main" ref={outsideDocument}>
-        {buttonClick ? <SearchBar/> : null}
+        {buttonClick ? <SearchBar getData={getData}/> : null}
         <section id={buttonClick ? `opacity` : null}>
           <main>
             <div className="add-location">

@@ -8,12 +8,6 @@ const newUser = new User({
   email: 'john@example.com',
   age: 30,
 });
-
+console.log(newUser);
 // Save the user to the database
-newUser.save((err, user) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log('User created successfully:', user);
-  }
-});
+newUser.save();

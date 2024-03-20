@@ -3,10 +3,7 @@
 const mongoose = require('mongoose');
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/mydatabase', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect('mongodb://127.0.0.1:27017/WeatherOfficial');
 
 // Define schema
 const Schema = mongoose.Schema;
@@ -16,7 +13,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   age: Number,
   createdAt: {

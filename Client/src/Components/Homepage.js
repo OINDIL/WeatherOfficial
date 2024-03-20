@@ -1,13 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './CSS/homepage.css';
 import Grid from './Small Components/Grid';
 import AreaChart from './Small Components/AreaChart';
+import SearchBar from './Small Components/SearchBar'
 
 function Homepage() {
+  //? states
   const [isActive, setIsActive] = useState(false); // for switch
   const [chartArr, setChartArr] = useState([0, 0, 0, 0, 0, 0, 0]);
+  const [buttonClick, setButtonClick] = useState(false);
+  // const [clickOutside,setClickOutside] = useState(false);
+  //? states End
+  //? Refs
+  let outsideDocument = useRef();
+  useEffect(() => {
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        setButtonClick(false);
+      }
+    }
+
+    const handleClickOutside = (event) => {
+      if (!outsideDocument.current.contains(event.target) && outsideDocument.current) {
+        setButtonClick(false) 
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [])
+
+
   let arr = []; // for apex charts
-  // let arrF = []
   const [gridData, setGridData] = useState([
     { name: 'Humidity', icon: 'bx bxs-droplet', data: 0 },
     { name: 'Wind', icon: 'bx bx-wind', data: 0 },
@@ -33,11 +62,11 @@ function Homepage() {
       `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=7&q=${search}&aqi=yes`
     );
     const obj = await fetchedData.json();
-    const { humidity, wind_kph, precip_in, uv, feelslike_c,feelslike_f, temp_c,temp_f } = obj.current;
+    const { humidity, wind_kph, precip_in, uv, feelslike_c, feelslike_f, temp_c, temp_f } = obj.current;
     const { icon, text } = obj.current.condition;
     const { forecastday } = obj.forecast;
-//! For chart only
-    forecastday.forEach((item)=>{
+    //! For chart only
+    forecastday.forEach((item) => {
       arr.push(item.day.avgtemp_c)
     })
     setChartArr(arr)
@@ -62,7 +91,7 @@ function Homepage() {
       { name: 'Rain', unit: 'inch', icon: 'bx bx-cloud-rain', data: precip_in },
       { name: 'UV Index', icon: 'bx bx-sun', data: uv },
       {
-        name: 'Feels Like', icon: 'bx bxs-thermometer', data: Math.floor(feelslike_c), data_f: Math.floor(feelslike_f),id:'temp'
+        name: 'Feels Like', icon: 'bx bxs-thermometer', data: Math.floor(feelslike_c), data_f: Math.floor(feelslike_f), id: 'temp'
       },
       {
         name: 'Chance of Rain', unit: '%', icon: 'bx bx-water', data: daily_chance_of_rain,
@@ -78,11 +107,12 @@ function Homepage() {
   };
   return (
     <>
-      <div className="container-main">
-        <section>
+      <div className="container-main" ref={outsideDocument}>
+        {buttonClick ? <SearchBar/> : null}
+        <section id={buttonClick ? `opacity` : null}>
           <main>
             <div className="add-location">
-              <i className="bx bxs-plus-square"></i>
+              <button id='add-location-btn' type="button" onClick={() => setButtonClick(!buttonClick)}><i className="bx bxs-plus-square"></i></button>
               <div className="switch-deg">
                 <p>&deg;C</p>
                 <div className="form-check form-switch">
@@ -146,7 +176,7 @@ function Homepage() {
                 <button type="button">Next Day &gt;</button>
               </div>
               <div className="chart">
-                <AreaChart chartarr={chartArr}/>
+                <AreaChart chartarr={chartArr} />
               </div>
             </div>
             <div className="more-details">
@@ -157,7 +187,7 @@ function Homepage() {
                 {gridData.map((item, index) => {
                   return (
                     <div className="grids" key={index}>
-                      <Grid data={item} active={isActive}/>
+                      <Grid data={item} active={isActive} />
                     </div>
                   );
                 })}

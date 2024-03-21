@@ -37,7 +37,12 @@ function Homepage() {
   }, [])
   //! Searched Value is coming here
   const getData = (data)=>{
-    setSearchedValue(data)
+    if(data){
+      setSearchedValue(data)
+    }
+    else{
+      alert("Can't Search Empty Locations")
+    }
   }
 
   let arr = []; // for apex charts
@@ -62,45 +67,50 @@ function Homepage() {
   });
 
   const fetchData = async (search) => {
-    const fetchedData = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=7&q=${search}&aqi=yes`
-    );
-    const obj = await fetchedData.json();
-    const { humidity, wind_kph, precip_in, uv, feelslike_c, feelslike_f, temp_c, temp_f } = obj.current;
-    const { icon, text } = obj.current.condition;
-    const { forecastday } = obj.forecast;
-    //! For chart only
-    forecastday.forEach((item) => {
-      arr.push(item.day.avgtemp_c)
-    })
-    setChartArr(arr)
-
-    const { name, country, localtime } = obj.location;
-    const { sunrise, sunset } = obj.forecast.forecastday[0].astro;
-    const { daily_chance_of_rain } = obj.forecast.forecastday[0].day;
-    setMain({
-      city: name,
-      country: country,
-      Date: localtime,
-      sunset: sunset,
-      sunrise: sunrise,
-      temperature_c: temp_c,
-      temperature_f: temp_f,
-      icon: icon,
-      condition: text,
-    });
-    setGridData([
-      { name: 'Humidity', unit: '%', icon: 'bx bxs-droplet', data: humidity },
-      { name: 'Wind', unit: 'kph', icon: 'bx bx-wind', data: wind_kph },
-      { name: 'Rain', unit: 'inch', icon: 'bx bx-cloud-rain', data: precip_in },
-      { name: 'UV Index', icon: 'bx bx-sun', data: uv },
-      {
-        name: 'Feels Like', icon: 'bx bxs-thermometer', data: Math.floor(feelslike_c), data_f: Math.floor(feelslike_f), id: 'temp'
-      },
-      {
-        name: 'Chance of Rain', unit: '%', icon: 'bx bx-water', data: daily_chance_of_rain,
-      },
-    ]);
+    try{
+      const fetchedData = await fetch(
+        `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=7&q=${search}&aqi=yes`
+      );
+      const obj = await fetchedData.json();
+      const { humidity, wind_kph, precip_in, uv, feelslike_c, feelslike_f, temp_c, temp_f } = obj.current;
+      const { icon, text } = obj.current.condition;
+      const { forecastday } = obj.forecast;
+      //! For chart only
+      forecastday.forEach((item) => {
+        arr.push(item.day.avgtemp_c)
+      })
+      setChartArr(arr)
+  
+      const { name, country, localtime } = obj.location;
+      const { sunrise, sunset } = obj.forecast.forecastday[0].astro;
+      const { daily_chance_of_rain } = obj.forecast.forecastday[0].day;
+      setMain({
+        city: name,
+        country: country,
+        Date: localtime,
+        sunset: sunset,
+        sunrise: sunrise,
+        temperature_c: temp_c,
+        temperature_f: temp_f,
+        icon: icon,
+        condition: text,
+      });
+      setGridData([
+        { name: 'Humidity', unit: '%', icon: 'bx bxs-droplet', data: humidity },
+        { name: 'Wind', unit: 'kph', icon: 'bx bx-wind', data: wind_kph },
+        { name: 'Rain', unit: 'inch', icon: 'bx bx-cloud-rain', data: precip_in },
+        { name: 'UV Index', icon: 'bx bx-sun', data: uv },
+        {
+          name: 'Feels Like', icon: 'bx bxs-thermometer', data: Math.floor(feelslike_c), data_f: Math.floor(feelslike_f), id: 'temp'
+        },
+        {
+          name: 'Chance of Rain', unit: '%', icon: 'bx bx-water', data: daily_chance_of_rain,
+        },
+      ]);
+    }catch(err){
+      alert("Error Fetching Weather Data!!!")
+    }
+    
   };
   useEffect(() => {
     fetchData(searchedValue);

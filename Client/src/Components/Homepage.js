@@ -63,13 +63,13 @@ function Homepage() {
 
   let arr = []; // for apex charts
 
-
+  //! This function is for fetching Data
   const fetchData = async (search) => {
     setLoaderOn(true)
     setProgress(10)
     try {
       const fetchedData = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=7&q=${search}&aqi=yes`
+        `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=6&q=${search}&aqi=yes`
       );
       setProgress(40)
       const obj = await fetchedData.json();

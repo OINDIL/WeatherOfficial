@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 
-function AreaChart(props) {
-  const [arr, setArr] = useState(props.chartarr);
+function AreaChart({chartarr}) {
+  const [arr, setArr] = useState(chartarr);
   useEffect(() => {
-    setArr(props.chartarr)
-  }, [props.chartarr]);
+    setArr(chartarr)
+  }, [chartarr]);
   return (
     <>
       <div className="container-fluid">

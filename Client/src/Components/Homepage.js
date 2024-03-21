@@ -3,6 +3,7 @@ import './CSS/homepage.css';
 import Grid from './Small Components/Grid';
 import AreaChart from './Small Components/AreaChart';
 import SearchBar from './Small Components/SearchBar'
+import LoadingBar from 'react-top-loading-bar'
 
 function Homepage() {
   //? states
@@ -10,6 +11,28 @@ function Homepage() {
   const [chartArr, setChartArr] = useState([0, 0, 0, 0, 0, 0, 0]);
   const [buttonClick, setButtonClick] = useState(false);
   const [searchedValue, setSearchedValue] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const [loaderOn, setLoaderOn] = useState(false);
+
+  const [gridData, setGridData] = useState([
+    { name: 'Humidity', icon: 'bx bxs-droplet', data: 0 },
+    { name: 'Wind', icon: 'bx bx-wind', data: 0 },
+    { name: 'Rain', icon: 'bx bx-cloud-rain', data: 0 },
+    { name: 'UV Index', icon: 'bx bx-sun', data: 0 },
+    { name: 'Feels Like', icon: 'bx bxs-thermometer', data: 0 },
+    { name: 'Chance of Rain', icon: 'bx bx-water', data: 0 },
+  ]);
+  const [main, setMain] = useState({
+    city: 'No Data',
+    country: 'No Data',
+    Date: 'No Data',
+    sunset: 'No Data',
+    sunrise: 'No Data',
+    temperature_c: 0,
+    temperature_f: 0,
+    icon: '',
+    condition: 'No Data',
+  });
   //? states End
   //? Refs
   let outsideDocument = useRef();
@@ -36,41 +59,26 @@ function Homepage() {
     };
   }, [])
   //! Searched Value is coming here
-  const getData = (data)=>{
-    if(data){
+  const getData = (data) => {
+    if (data) {
       setSearchedValue(data)
     }
-    else{
+    else {
       alert("Can't Search Empty Locations")
     }
   }
 
   let arr = []; // for apex charts
-  const [gridData, setGridData] = useState([
-    { name: 'Humidity', icon: 'bx bxs-droplet', data: 0 },
-    { name: 'Wind', icon: 'bx bx-wind', data: 0 },
-    { name: 'Rain', icon: 'bx bx-cloud-rain', data: 0 },
-    { name: 'UV Index', icon: 'bx bx-sun', data: 0 },
-    { name: 'Feels Like', icon: 'bx bxs-thermometer', data: 0 },
-    { name: 'Chance of Rain', icon: 'bx bx-water', data: 0 },
-  ]);
-  const [main, setMain] = useState({
-    city: 'No Data',
-    country: 'No Data',
-    Date: 'No Data',
-    sunset: 'No Data',
-    sunrise: 'No Data',
-    temperature_c: 0,
-    temperature_f: 0,
-    icon: '',
-    condition: 'No Data',
-  });
+
 
   const fetchData = async (search) => {
-    try{
+    setLoaderOn(true)
+    setProgress(10)
+    try {
       const fetchedData = await fetch(
         `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=7&q=${search}&aqi=yes`
       );
+      setProgress(40)
       const obj = await fetchedData.json();
       const { humidity, wind_kph, precip_in, uv, feelslike_c, feelslike_f, temp_c, temp_f } = obj.current;
       const { icon, text } = obj.current.condition;
@@ -80,10 +88,11 @@ function Homepage() {
         arr.push(item.day.avgtemp_c)
       })
       setChartArr(arr)
-  
+
       const { name, country, localtime } = obj.location;
       const { sunrise, sunset } = obj.forecast.forecastday[0].astro;
       const { daily_chance_of_rain } = obj.forecast.forecastday[0].day;
+      setProgress(60)
       setMain({
         city: name,
         country: country,
@@ -107,10 +116,11 @@ function Homepage() {
           name: 'Chance of Rain', unit: '%', icon: 'bx bx-water', data: daily_chance_of_rain,
         },
       ]);
-    }catch(err){
+      setProgress(75)
+    } catch (err) {
       alert("Error Fetching Weather Data!!!")
     }
-    
+    setProgress(100)
   };
   useEffect(() => {
     fetchData(searchedValue);
@@ -121,8 +131,9 @@ function Homepage() {
   };
   return (
     <>
+      {loaderOn ? <LoadingBar color="#f11946" progress={progress} onLoaderFinished={() => setProgress(0)} /> : null}
       <div className="container-main" ref={outsideDocument}>
-        {buttonClick ? <SearchBar getData={getData}/> : null}
+        {buttonClick ? <SearchBar getData={getData} /> : null}
         <section id={buttonClick ? `opacity` : null}>
           <main>
             <div className="add-location">

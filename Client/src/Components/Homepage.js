@@ -9,7 +9,7 @@ function Homepage() {
   const [isActive, setIsActive] = useState(false); // for switch
   const [chartArr, setChartArr] = useState([0, 0, 0, 0, 0, 0, 0]);
   const [buttonClick, setButtonClick] = useState(false);
-  const [searchedValue,setSearchedValue] = useState(null);
+  const [searchedValue, setSearchedValue] = useState(null);
   //? states End
   //? Refs
   let outsideDocument = useRef();
@@ -37,9 +37,7 @@ function Homepage() {
   }, [])
   //! Searched Value is coming here
   const getData = (data)=>{
-    console.log("Data",data);
     setSearchedValue(data)
-    console.log("SearchedValue",searchedValue)
   }
 
   let arr = []; // for apex charts
@@ -106,7 +104,7 @@ function Homepage() {
   };
   useEffect(() => {
     fetchData(searchedValue);
-  }, []);
+  }, [searchedValue]);
 
   const handleButtonClick = () => {
     setIsActive(!isActive);

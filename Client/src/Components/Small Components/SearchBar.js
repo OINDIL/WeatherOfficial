@@ -10,6 +10,7 @@ function SearchBar({getData}) {
             <div className="input-group mb-3" id='search-main'>
                 <input type="text" className="form-control" placeholder="Add a Location" aria-describedby="button-addon2"
                 onChange={(e)=>setInputValue(e.target.value)}
+                autoFocus
                 />
                     <button className="btn btn-primary" type="button" id="button-addon2" onClick={()=>getData(inputValue)}>Add</button>
             </div>

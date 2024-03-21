@@ -114,6 +114,7 @@ function Homepage() {
       alert("Error Fetching Weather Data!!!")
     }
     setProgress(100)
+    setButtonClick(false)
   };
   useEffect(() => {
     fetchData(searchedValue);

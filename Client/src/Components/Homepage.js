@@ -4,6 +4,7 @@ import Grid from './Small Components/Grid';
 import AreaChart from './Small Components/AreaChart';
 import SearchBar from './Small Components/SearchBar'
 import LoadingBar from 'react-top-loading-bar'
+import Error from './Small Components/Error';
 
 function Homepage() {
   //? states
@@ -14,6 +15,7 @@ function Homepage() {
   //* Loader Component states
   const [progress, setProgress] = useState(0);
   const [loaderOn, setLoaderOn] = useState(false);
+  const [errorState,setErrorState] = useState(false)
 
   const [gridData, setGridData] = useState([
     { name: 'Humidity', icon: 'bx bxs-droplet', data: 0 },
@@ -111,7 +113,7 @@ function Homepage() {
       ]);
       setProgress(75)
     } catch (err) {
-      alert("Error Fetching Weather Data!!!")
+      setErrorState(true)
     }
     setProgress(100)
     setButtonClick(false)
@@ -126,9 +128,10 @@ function Homepage() {
   return (
     <>
       {loaderOn ? <LoadingBar color='#0C4CE3' progress={progress} onLoaderFinished={() => setProgress(0)} /> : null}
+      {errorState ? <Error setErrorState={setErrorState} setButtonClick={setButtonClick}/> : null} 
       <div className="container-main" ref={outsideDocument}>
         {buttonClick ? <SearchBar getData={getData} /> : null}
-        <section id={buttonClick ? `opacity` : null}>
+        <section id={buttonClick || errorState ? `opacity` : null}>
           <main>
             <div className="add-location">
               <button id='add-location-btn' type="button" onClick={() => setButtonClick(!buttonClick)}><i className="bx bxs-plus-square"></i></button>

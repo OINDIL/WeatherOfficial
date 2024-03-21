@@ -11,6 +11,7 @@ function Homepage() {
   const [chartArr, setChartArr] = useState([0, 0, 0, 0, 0, 0, 0]);
   const [buttonClick, setButtonClick] = useState(false);
   const [searchedValue, setSearchedValue] = useState(null);
+  //* Loader Component states
   const [progress, setProgress] = useState(0);
   const [loaderOn, setLoaderOn] = useState(false);
 
@@ -44,18 +45,10 @@ function Homepage() {
       }
     }
 
-    // const handleClickOutside = (event) => {
-    //   if (!outsideDocument.current.contains(event.target) && outsideDocument.current) {
-    //     setButtonClick(false) 
-    //   }
-    // };
-
     document.addEventListener('keydown', handleEscapeKey);
-    // document.addEventListener('click', handleClickOutside);
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
-      // document.removeEventListener('click', handleClickOutside);
     };
   }, [])
   //! Searched Value is coming here
@@ -131,7 +124,7 @@ function Homepage() {
   };
   return (
     <>
-      {loaderOn ? <LoadingBar color="#f11946" progress={progress} onLoaderFinished={() => setProgress(0)} /> : null}
+      {loaderOn ? <LoadingBar color='#0C4CE3' progress={progress} onLoaderFinished={() => setProgress(0)} /> : null}
       <div className="container-main" ref={outsideDocument}>
         {buttonClick ? <SearchBar getData={getData} /> : null}
         <section id={buttonClick ? `opacity` : null}>

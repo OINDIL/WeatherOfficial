@@ -15,6 +15,7 @@ function Homepage() {
   //* Loader Component states
   const [progress, setProgress] = useState(0);
   const [loaderOn, setLoaderOn] = useState(false);
+  //* Error component
   const [errorState,setErrorState] = useState(false)
 
   const [gridData, setGridData] = useState([

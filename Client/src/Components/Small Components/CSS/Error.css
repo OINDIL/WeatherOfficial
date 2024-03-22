@@ -1,5 +1,6 @@
 #error-card {
   position: relative;
+  box-shadow: 0 0 0.15rem #252424;
 }
 #error-card-main {
   position: absolute;

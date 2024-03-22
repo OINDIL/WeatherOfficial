@@ -5,6 +5,8 @@ import AreaChart from './Small Components/AreaChart';
 import SearchBar from './Small Components/SearchBar'
 import LoadingBar from 'react-top-loading-bar'
 import Error from './Small Components/Error';
+import Chart from 'chart.js/auto';
+
 
 function Homepage() {
   //? states
@@ -17,7 +19,7 @@ function Homepage() {
   const [loaderOn, setLoaderOn] = useState(false);
   //* Error component
   const [errorState,setErrorState] = useState(false)
-
+  
   const [gridData, setGridData] = useState([
     { name: 'Humidity', icon: 'bx bxs-droplet', data: 0 },
     { name: 'Wind', icon: 'bx bx-wind', data: 0 },
@@ -64,7 +66,6 @@ function Homepage() {
     }
   }
 
-  let arr = []; // for apex charts
 
   //! This function is for fetching Data
   const fetchData = async (search) => {
@@ -80,8 +81,9 @@ function Homepage() {
       const { icon, text } = obj.current.condition;
       const { forecastday } = obj.forecast;
       //! For chart only
-      forecastday.forEach((item) => {
-        arr.push(item.day.avgtemp_c)
+      
+      let arr = forecastday.map((item)=>{
+        return (item.day.avgtemp_c);
       })
       setChartArr(arr)
 
@@ -121,18 +123,22 @@ function Homepage() {
   };
   useEffect(() => {
     fetchData(searchedValue);
+    outsideDocument.current.style.background = 'linear-gradient(to right, #5863db, #9a89cf)'
   }, [searchedValue]);
 
   const handleButtonClick = () => {
     setIsActive(!isActive);
   };
+
+
+  
   return (
     <>
       {loaderOn ? <LoadingBar color='#0C4CE3' progress={progress} onLoaderFinished={() => setProgress(0)} /> : null}
       {errorState ? <Error setErrorState={setErrorState} setButtonClick={setButtonClick}/> : null} 
-      <div className="container-main" ref={outsideDocument}>
+      <div className="container-main">
         {buttonClick ? <SearchBar getData={getData} /> : null}
-        <section id={buttonClick || errorState ? `opacity` : null}>
+        <section id={buttonClick || errorState ? `opacity` : null} ref={outsideDocument}>
           <main>
             <div className="add-location">
               <button id='add-location-btn' type="button" onClick={() => setButtonClick(!buttonClick)}><i className="bx bxs-plus-square"></i></button>

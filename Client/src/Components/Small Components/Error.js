@@ -9,7 +9,7 @@ function Error({setErrorState , setButtonClick}) {
     return (
         <>
         <div id='error-card'>
-            <div className="card" style={{width:'30rem'}} id="error-card-main">
+            <div className="card" style={{maxWidth:'30rem'}} id="error-card-main">
                 <div className="card-body d-flex flex-column gap-1">
                     <h5 className="card-title">Invalid Location</h5>
                     <p className="card-text">Try a different location.</p>

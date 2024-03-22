@@ -12,7 +12,7 @@ section {
   width: 100%;
   height: 100%;
   display: flex;
-  background: linear-gradient(to right, #5863db, #9a89cf); /*! have to work here later */
+  /* background: linear-gradient(to right, #5863db, #9a89cf); */
 }
 main {
   display: flex;

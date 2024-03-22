@@ -61,7 +61,9 @@ function Homepage() {
       setSearchedValue(data)
     }
     else {
-      alert("Can't Search Empty Locations")
+      // alert("Can't Search Empty Locations")
+      setErrorState(true)
+      setButtonClick(false)
     }
   }
 

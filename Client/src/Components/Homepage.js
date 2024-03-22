@@ -5,7 +5,6 @@ import AreaChart from './Small Components/AreaChart';
 import SearchBar from './Small Components/SearchBar'
 import LoadingBar from 'react-top-loading-bar'
 import Error from './Small Components/Error';
-import Chart from 'chart.js/auto';
 
 
 function Homepage() {
@@ -205,7 +204,7 @@ function Homepage() {
                 <button type="button">Next Day &gt;</button>
               </div>
               <div className="chart">
-                <AreaChart chartarr={chartArr} />
+                <AreaChart chartarr={chartArr} isActive={isActive}/>
               </div>
             </div>
             <div className="more-details">

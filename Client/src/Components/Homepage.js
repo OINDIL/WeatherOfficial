@@ -37,6 +37,7 @@ function Homepage() {
     temperature_f: 0,
     icon: '',
     condition: 'No Data',
+    code:0,
     aqi:'No data'
   });
   //? states End
@@ -95,7 +96,25 @@ function Homepage() {
         return 'Undefined'
     }
   }
-
+  //! for linear gradient
+  const linearGradient = (value) =>{
+    switch(value){
+      case 1000:
+        return 'linear-gradient(to left, #dcdcf8, #2d5ad2)'
+      case 1003:
+        return 'linear-gradient(to left, #b6d6ec, #4a6777)'
+      case 1006:
+        return 'linear-gradient(to left, #c8cbce, #34363d)'
+      case 1009:
+        return 'linear-gradient(to left, #9c9d9d, #505252)'
+      case 1030:
+        return 'linear-gradient(to left, #aec0b6, #5e7c6e)'
+      case 1135:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      default:
+        return 'linear-gradient(to left, #dcdcf8, #2d5ad2)'
+    }
+  }
   //! This function is for fetching Data
   const fetchData = async (search) => {
     setLoaderOn(true)
@@ -108,7 +127,7 @@ function Homepage() {
       const obj = await fetchedData.json();
       const { humidity, wind_kph, precip_in, uv, feelslike_c, feelslike_f, temp_c, temp_f,air_quality} = obj.current;
 
-      const { icon, text } = obj.current.condition;
+      const { icon, text,code } = obj.current.condition;
       const { forecastday } = obj.forecast;
       //! For chart only
       
@@ -131,6 +150,7 @@ function Homepage() {
         temperature_f: temp_f,
         icon: icon,
         condition: text,
+        code:code,
         aqi: air_quality['gb-defra-index']
       });
       setGridData([
@@ -154,7 +174,6 @@ function Homepage() {
   };
   useEffect(() => {
     fetchData(searchedValue);
-    outsideDocument.current.style.background = 'linear-gradient(to right, #5863db, #9a89cf)'
   }, [searchedValue]);
 
   const handleButtonClick = () => {
@@ -169,7 +188,9 @@ function Homepage() {
       {errorState ? <Error setErrorState={setErrorState} setButtonClick={setButtonClick}/> : null} 
       <div className="container-main">
         {buttonClick ? <SearchBar getData={getData} /> : null}
-        <section id={buttonClick || errorState ? `opacity` : null} ref={outsideDocument}>
+        <section id={buttonClick || errorState ? `opacity` : null} ref={outsideDocument}
+        style={{background:`${linearGradient(main.code)}`}}
+        >
           <main>
             <div className="add-location">
               <button id='add-location-btn' type="button" onClick={() => setButtonClick(!buttonClick)}><i className="bx bxs-plus-square"></i></button>

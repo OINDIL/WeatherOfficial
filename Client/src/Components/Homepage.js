@@ -254,7 +254,7 @@ function Homepage() {
             </div>
             <div className="upcoming-card">
               <div className="upcoming">
-                <h6>Upcoming Hours</h6>
+                <h6>Upcoming Days</h6>
                 <button type="button">Next Day &gt;</button>
               </div>
               <div className="chart">

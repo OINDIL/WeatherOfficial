@@ -3,18 +3,13 @@ import Chart from 'react-apexcharts';
 
 function AreaChart({chartarr ,isActive}) {
   const [arr, setArr] = useState(chartarr);
-  // console.log(isActive);
   function fahrenFunc(data){
     return (
       data.map((item)=>Math.floor((item*9/5)+32))
     )
   }
-
-  // console.log(fahrenFunc(arr));
-
-
+  
   useEffect(() => {
-    console.log(chartarr);
     if(isActive){
       setArr(fahrenFunc(chartarr))
     }
@@ -41,6 +36,9 @@ function AreaChart({chartarr ,isActive}) {
               toolbar: {
                 show: false,
               },
+            },
+            grid:{
+              show:false,
             },
             colors: ['#3083dc'],
             stroke: { width: 0, curve: 'smooth' },

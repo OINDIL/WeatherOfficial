@@ -37,6 +37,7 @@ function Homepage() {
     temperature_f: 0,
     icon: '',
     condition: 'No Data',
+    aqi:'No data'
   });
   //? states End
   //? Refs
@@ -67,6 +68,43 @@ function Homepage() {
     }
   }
 
+  //! For aqi level
+  const aqiQuality = (data) =>{
+    switch(data){
+      case 1:
+        return 'Low'
+        break
+      case 2:
+        return 'Low'
+        break
+      case 3:
+        return 'Low'
+        break
+      case 4:
+        return 'Moderate'
+        break
+      case 5:
+        return 'Moderate'
+        break
+      case 6:
+        return 'Moderate'
+        break
+      case 7:
+        return 'High'
+        break
+      case 8:
+        return 'High'
+        break
+      case 9:
+        return 'High'
+        break
+      case 10:
+        return 'Hazardous'
+        break
+      default:
+        return 'Undefined'
+    }
+  }
 
   //! This function is for fetching Data
   const fetchData = async (search) => {
@@ -78,7 +116,8 @@ function Homepage() {
       );
       setProgress(40)
       const obj = await fetchedData.json();
-      const { humidity, wind_kph, precip_in, uv, feelslike_c, feelslike_f, temp_c, temp_f } = obj.current;
+      const { humidity, wind_kph, precip_in, uv, feelslike_c, feelslike_f, temp_c, temp_f,air_quality} = obj.current;
+
       const { icon, text } = obj.current.condition;
       const { forecastday } = obj.forecast;
       //! For chart only
@@ -102,6 +141,7 @@ function Homepage() {
         temperature_f: temp_f,
         icon: icon,
         condition: text,
+        aqi: air_quality['gb-defra-index']
       });
       setGridData([
         { name: 'Humidity', unit: '%', icon: 'bx bxs-droplet', data: humidity },
@@ -184,6 +224,7 @@ function Homepage() {
 
             <div className="temp">
               <h2>{isActive ? Math.floor(main.temperature_f) : Math.floor(main.temperature_c)}&deg;</h2>
+              <h3>AQI is {aqiQuality(main.aqi)}</h3>
               <div className="type">
                 <img src={`${main.icon}`} alt="" />
                 <p>{main.condition}</p>

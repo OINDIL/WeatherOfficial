@@ -73,34 +73,24 @@ function Homepage() {
     switch(data){
       case 1:
         return 'Low'
-        break
       case 2:
         return 'Low'
-        break
       case 3:
         return 'Low'
-        break
       case 4:
         return 'Moderate'
-        break
       case 5:
         return 'Moderate'
-        break
       case 6:
         return 'Moderate'
-        break
       case 7:
         return 'High'
-        break
       case 8:
         return 'High'
-        break
       case 9:
         return 'High'
-        break
       case 10:
         return 'Hazardous'
-        break
       default:
         return 'Undefined'
     }

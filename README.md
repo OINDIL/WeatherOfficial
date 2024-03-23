@@ -27,8 +27,3 @@ Powered by [Weatherapi.com](https://www.weatherapi.com/)
 Get the api key from the website and paste it
 ```
 
-
-## Contributing
-
-Currently I am not accepting contributions. But later I will accept every type of contributions.
-

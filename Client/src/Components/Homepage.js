@@ -5,6 +5,7 @@ import AreaChart from './Small Components/AreaChart';
 import SearchBar from './Small Components/SearchBar'
 import LoadingBar from 'react-top-loading-bar'
 import Error from './Small Components/Error';
+import CloseButton from './Small Components/CloseButton';
 
 
 function Homepage() {
@@ -120,9 +121,8 @@ function Homepage() {
     setLoaderOn(true)
     setProgress(10)
     try {
-      const fetchedData = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=3&q=${search}&aqi=yes`
-      );
+      const URL = `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=3&q=${search}&aqi=yes`
+      const fetchedData = await fetch(URL);
       setProgress(40)
       const obj = await fetchedData.json();
       const { humidity, wind_kph, precip_in, uv, feelslike_c, feelslike_f, temp_c, temp_f,air_quality} = obj.current;
@@ -157,7 +157,7 @@ function Homepage() {
         { name: 'Humidity', unit: '%', icon: 'bx bxs-droplet', data: humidity },
         { name: 'Wind', unit: 'kph', icon: 'bx bx-wind', data: wind_kph },
         { name: 'Rain', unit: 'inch', icon: 'bx bx-cloud-rain', data: precip_in },
-        { name: 'UV Index', icon: 'bx bx-sun', data: uv },
+        { name: 'UV Index', icon: 'bx bx-sun', data: uv, id:'uv' },
         {
           name: 'Feels Like', icon: 'bx bxs-thermometer', data: Math.floor(feelslike_c), data_f: Math.floor(feelslike_f), id: 'temp'
         },
@@ -187,6 +187,7 @@ function Homepage() {
       {loaderOn ? <LoadingBar color='#0C4CE3' progress={progress} onLoaderFinished={() => setProgress(0)} /> : null}
       {errorState ? <Error setErrorState={setErrorState} setButtonClick={setButtonClick}/> : null} 
       <div>
+        {buttonClick ? <CloseButton setButtonClick={setButtonClick}/> : null}
         {buttonClick ? <SearchBar getData={getData} /> : null}
         <section id={buttonClick || errorState ? `opacity` : null} ref={outsideDocument}
         style={{background:`${linearGradient(main.code)}`}}

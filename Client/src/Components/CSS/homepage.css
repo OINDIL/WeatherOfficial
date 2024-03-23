@@ -2,13 +2,9 @@ p {
   padding: 0;
   margin: 0;
 }
-.container-main {
-  height: 100svh;
-}
 section {
-  max-width: 100%;
-  max-height: 100%;
   display: flex;
+  height: 100vh;
 }
 main {
   display: flex;
@@ -21,7 +17,6 @@ main {
 .add-location {
   display: flex;
   justify-content: space-between;
-  /* background-color: ; */
 }
 
 .add-location #add-location-btn {
@@ -34,7 +29,6 @@ main {
 }
 .add-location .switch-deg {
   display: flex;
-  /* background-color: red; */
   gap: 5px;
 }
 .location-date-sun {
@@ -73,13 +67,12 @@ aside {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  overflow: auto;
+  overflow-y: auto;
 }
 .welcome-text-logo {
   height: 10%;
   display: flex;
   justify-content: space-between;
-  /* background-color: #74d8fc; */
   align-items: center;
 }
 .welcome-text-logo .text {
@@ -99,11 +92,10 @@ aside {
 .upcoming-card .chart {
   display: flex;
   align-items: center;
-  /* background-color: #0041f3; */
 }
 .upcoming-card .upcoming h6{
   font-size: 90%;
-  font-weight: 500;
+  font-weight: 400;
   color: #252525;
 }
 .upcoming {
@@ -125,7 +117,6 @@ aside {
 }
 .more-details {
   height: 50%;
-  /* background-color: #74d8fc; */
 }
 .grid-container {
   height: 100%;
@@ -137,17 +128,15 @@ aside {
   opacity: 0.5;
 }
 @media(max-width:1024px){
-  .container-main{
-    height: auto;
-  }
   section{
+    height: auto;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   aside{
-    padding: 30px 20px 20px 20px;
     min-width: 100%;
+    padding: 30px 20px 20px 20px;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
     border-bottom-left-radius: 0;

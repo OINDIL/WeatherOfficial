@@ -186,7 +186,7 @@ function Homepage() {
     <>
       {loaderOn ? <LoadingBar color='#0C4CE3' progress={progress} onLoaderFinished={() => setProgress(0)} /> : null}
       {errorState ? <Error setErrorState={setErrorState} setButtonClick={setButtonClick}/> : null} 
-      <div className="container-main">
+      <div>
         {buttonClick ? <SearchBar getData={getData} /> : null}
         <section id={buttonClick || errorState ? `opacity` : null} ref={outsideDocument}
         style={{background:`${linearGradient(main.code)}`}}

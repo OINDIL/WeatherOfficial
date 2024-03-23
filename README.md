@@ -17,6 +17,7 @@ Weather Point is a weather app (May change the name based on the functionalities
 - Modern UI
 - Charts to show low and high temp
 - Loading Bar
+- Responsive
 - Adding more soon...
 
 

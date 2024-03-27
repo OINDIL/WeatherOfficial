@@ -18,8 +18,8 @@ function Homepage() {
   const [progress, setProgress] = useState(0);
   const [loaderOn, setLoaderOn] = useState(false);
   //* Error component
-  const [errorState,setErrorState] = useState(false)
-  
+  const [errorState, setErrorState] = useState(false)
+
   const [gridData, setGridData] = useState([
     { name: 'Humidity', icon: 'bx bxs-droplet', data: 0 },
     { name: 'Wind', icon: 'bx bx-wind', data: 0 },
@@ -38,8 +38,8 @@ function Homepage() {
     temperature_f: 0,
     icon: '',
     condition: 'No Data',
-    code:0,
-    aqi:'No data'
+    code: 0,
+    aqi: 'No data'
   });
   //? states End
   //? Refs
@@ -64,15 +64,14 @@ function Homepage() {
       setSearchedValue(data)
     }
     else {
-      // alert("Can't Search Empty Locations")
       setErrorState(true)
       setButtonClick(false)
     }
   }
 
   //! For aqi level
-  const aqiQuality = (data) =>{
-    switch(data){
+  const aqiQuality = (data) => {
+    switch (data) {
       case 1:
         return 'Low'
       case 2:
@@ -98,8 +97,8 @@ function Homepage() {
     }
   }
   //! for linear gradient
-  const linearGradient = (value) =>{
-    switch(value){
+  const linearGradient = (value) => {
+    switch (value) {
       case 1000:
         return 'linear-gradient(to left, #dcdcf8, #2d5ad2)'
       case 1003:
@@ -110,7 +109,91 @@ function Homepage() {
         return 'linear-gradient(to left, #9c9d9d, #505252)'
       case 1030:
         return 'linear-gradient(to left, #aec0b6, #5e7c6e)'
+      case 1063: 
+        return 'linear-gradient(to left, #aec0b6, #5e7c6e)'
+      case 1066:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1069:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1072:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1087:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1114:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1117:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
       case 1135:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1147:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1150:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1153:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1168:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1171:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1180:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1183:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1186:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1189:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1192:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1195:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1198:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1201:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1204:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1207:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1210:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1213:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1216:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1219:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1222:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1225:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1237:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1240:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1243:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1246:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1249:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1252:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1255:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1258:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1261:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1264:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1273:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1276:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1279:
+        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+      case 1282:
         return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
       default:
         return 'linear-gradient(to left, #dcdcf8, #2d5ad2)'
@@ -125,13 +208,13 @@ function Homepage() {
       const fetchedData = await fetch(URL);
       setProgress(40)
       const obj = await fetchedData.json();
-      const { humidity, wind_kph, precip_in, uv, feelslike_c, feelslike_f, temp_c, temp_f,air_quality} = obj.current;
+      const { humidity, wind_kph, precip_in, uv, feelslike_c, feelslike_f, temp_c, temp_f, air_quality } = obj.current;
 
-      const { icon, text,code } = obj.current.condition;
+      const { icon, text, code } = obj.current.condition;
       const { forecastday } = obj.forecast;
       //! For chart only
-      
-      let arr = forecastday.map((item)=>{
+
+      let arr = forecastday.map((item) => {
         return (item.day.avgtemp_c);
       })
       setChartArr(arr)
@@ -150,14 +233,14 @@ function Homepage() {
         temperature_f: temp_f,
         icon: icon,
         condition: text,
-        code:code,
+        code: code,
         aqi: air_quality['gb-defra-index']
       });
       setGridData([
         { name: 'Humidity', unit: '%', icon: 'bx bxs-droplet', data: humidity },
         { name: 'Wind', unit: 'kph', icon: 'bx bx-wind', data: wind_kph },
         { name: 'Rain', unit: 'inch', icon: 'bx bx-cloud-rain', data: precip_in },
-        { name: 'UV Index', icon: 'bx bx-sun', data: uv, id:'uv' },
+        { name: 'UV Index', icon: 'bx bx-sun', data: uv, id: 'uv' },
         {
           name: 'Feels Like', icon: 'bx bxs-thermometer', data: Math.floor(feelslike_c), data_f: Math.floor(feelslike_f), id: 'temp'
         },
@@ -181,16 +264,16 @@ function Homepage() {
   };
 
 
-  
+
   return (
     <>
       {loaderOn ? <LoadingBar color='#0C4CE3' progress={progress} onLoaderFinished={() => setProgress(0)} /> : null}
-      {errorState ? <Error setErrorState={setErrorState} setButtonClick={setButtonClick}/> : null} 
+      {errorState ? <Error setErrorState={setErrorState} setButtonClick={setButtonClick} /> : null}
       <div>
-        {buttonClick ? <CloseButton setButtonClick={setButtonClick}/> : null}
+        {buttonClick ? <CloseButton setButtonClick={setButtonClick} /> : null}
         {buttonClick ? <SearchBar getData={getData} /> : null}
         <section id={buttonClick || errorState ? `opacity` : null} ref={outsideDocument}
-        style={{background:`${linearGradient(main.code)}`}}
+          style={{ background: `${linearGradient(main.code)}` }}
         >
           <main>
             <div className="add-location">
@@ -259,7 +342,7 @@ function Homepage() {
                 <button type="button">Next Day &gt;</button>
               </div>
               <div className="chart">
-                <AreaChart chartarr={chartArr} isActive={isActive}/>
+                <AreaChart chartarr={chartArr} isActive={isActive} />
               </div>
             </div>
             <div className="more-details">

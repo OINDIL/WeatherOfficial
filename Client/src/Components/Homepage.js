@@ -100,101 +100,101 @@ function Homepage() {
   const linearGradient = (value) => {
     switch (value) {
       case 1000:
-        return 'linear-gradient(to left, #dcdcf8, #2d5ad2)'
+        return 'linear-gradient(to right, #dcdcf8, #2d5ad2)'
       case 1003:
-        return 'linear-gradient(to left, #b6d6ec, #4a6777)'
+        return 'linear-gradient(to right, #b6d6ec, #4a6777)'
       case 1006:
-        return 'linear-gradient(to left, #c8cbce, #34363d)'
+        return 'linear-gradient(to right, #c8cbce, #34363d)'
       case 1009:
-        return 'linear-gradient(to left, #9c9d9d, #505252)'
+        return 'linear-gradient(to right, #c8cbce, #34363d)'
       case 1030:
-        return 'linear-gradient(to left, #aec0b6, #5e7c6e)'
+        return 'linear-gradient(to right, #aec0b6, #5e7c6e)'
       case 1063: 
-        return 'linear-gradient(to left, #aec0b6, #5e7c6e)'
+        return 'linear-gradient(to right, #d4d6d9, #307a48)'
       case 1066:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #818486, #bdc2c2)'
       case 1069:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #b1b4b7, #99c2d7)'
       case 1072:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #7290cc, #a6afae)'
       case 1087:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return ' linear-gradient(to right, #d3dbea, #797e7d)'
       case 1114:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #b0b0b2, #cbd3d2)'
       case 1117:
-        return 'linear-gradient(to left, #e6f2f5, #bfd1d5)'
+        return 'linear-gradient(to right, #e6f2f5, #bfd1d5)'
       case 1135:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #e5e3e7, #9f9ea1)'
       case 1147:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #c7c7d0, #67813d)'
       case 1150:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #809cd3, #939a99)'
       case 1153:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #baddef, #acb2ac)'
       case 1168:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #92c5e5, #99a1a0)'
       case 1171:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #a5cae0, #767c76)'
       case 1180:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #cfd5d7, #3c9158)'
       case 1183:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #cdd9d6, #82a9c9)'
       case 1186:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #9ac4f3, #aeb8c0)'
       case 1189:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #9ac4f3, #7b848c)'
       case 1192:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #427dbe, #aab4bd)'
       case 1195:
-        return 'linear-gradient(to left, #d2d3d5, #023c6c)'
+        return 'linear-gradient(to right, #d2d3d5, #023c6c)'
       case 1198:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #5d95d3, #b5c0c9)'
       case 1201:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #c5d5e8, #1d6fb4)'
       case 1204:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #dcdfe3, #62beb4)'
       case 1207:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #c5d5e8, #499a91)'
       case 1210:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #c5d5e8, #898c8b)'
       case 1213:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #f6f1f1, #c4bfbf)'
       case 1216:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #d1d6dc, #808583)'
       case 1219:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #a9b8cb, #959b99)'
       case 1222:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #d9dee3, #909191)'
       case 1225:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #d9dee3, #909191)'
       case 1237:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #d4e6fa, #b4bdba)'
       case 1240:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #d9dee3, #79b1d0)'
       case 1243:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #aecbf1, #49a1dc)'
       case 1246:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #adcefa, #3f85b4)'
       case 1249:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #d9dde1, #5797b9)'
       case 1252:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #adcefa, #499a91)'
       case 1255:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #c4d7ee, #8b9392)'
       case 1258:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #adbcce, #76807e)'
       case 1261:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #bfd2ea, #9ba6a3)'
       case 1264:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #d3e7fc, #999f9d)'
       case 1273:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #cadbe7, #909694)'
       case 1276:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #a7d2ef, #676b69)'
       case 1279:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #cbd2da, #696e6c)'
       case 1282:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to right, #b3bacb, #484b4a)'
       default:
         return 'linear-gradient(to left, #dcdcf8, #2d5ad2)'
     }

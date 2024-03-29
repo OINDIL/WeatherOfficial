@@ -122,7 +122,7 @@ function Homepage() {
       case 1114:
         return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
       case 1117:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to left, #e6f2f5, #bfd1d5)'
       case 1135:
         return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
       case 1147:
@@ -146,7 +146,7 @@ function Homepage() {
       case 1192:
         return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
       case 1195:
-        return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
+        return 'linear-gradient(to left, #d2d3d5, #023c6c)'
       case 1198:
         return 'linear-gradient(to left, #e5e3e7, #9f9ea1)'
       case 1201:

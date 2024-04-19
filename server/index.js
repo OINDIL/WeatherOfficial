@@ -2,7 +2,6 @@ import express from 'express';
 import axios from 'axios';
 import cors from 'cors'
 
-
 const app = express();
 //http://api.weatherapi.com/v1/forecast.json?key=fdf5fddc24e847cda8671813242402&days=3&q=kolkata&aqi=yes
 app.use(cors());

@@ -13,7 +13,7 @@ function Homepage() {
   const [isActive, setIsActive] = useState(false); // for switch
   const [chartArr, setChartArr] = useState([0, 0, 0, 0, 0, 0, 0]);
   const [buttonClick, setButtonClick] = useState(false);
-  const [searchedValue, setSearchedValue] = useState(null);
+  const [searchedValue, setSearchedValue] = useState('kolkata');
   //* Loader Component states
   const [progress, setProgress] = useState(0);
   const [loaderOn, setLoaderOn] = useState(false);
@@ -204,8 +204,8 @@ function Homepage() {
     setLoaderOn(true)
     setProgress(10)
     try {
-      const URL = `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&days=3&q=${search}&aqi=yes`
-      const fetchedData = await fetch(URL);
+      // const URL = `/weather?location=${search}`
+      const fetchedData = await fetch(`http://localhost:3001/weather?location=${search}`);
       setProgress(40)
       const obj = await fetchedData.json();
       const { humidity, wind_kph, precip_in, uv, feelslike_c, feelslike_f, temp_c, temp_f, air_quality } = obj.current;

@@ -1,18 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './CSS/homepage.css';
-import Grid from './Small Components/Grid';
-import AreaChart from './Small Components/AreaChart';
-import SearchBar from './Small Components/SearchBar'
+import Grid from '../Small Components/Grid';
+import AreaChart from '../Small Components/AreaChart';
+import SearchBar from '../Small Components/SearchBar'
 import LoadingBar from 'react-top-loading-bar'
-import Error from './Small Components/Error';
-import CloseButton from './Small Components/CloseButton';
-import { useAuth } from './Context/AuthContext';
-import Popup from './Small Components/Popup';
+import Error from '../Small Components/Error';
+import CloseButton from '../Small Components/CloseButton';
+import { useAuth } from '../Context/AuthContext';
+import Popup from '../Small Components/Popup';
 
 
 function Homepage() {
   //? context
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth()
 
   //? states
   const [isActive, setIsActive] = useState(false); // for switch
@@ -116,7 +116,7 @@ function Homepage() {
         return 'linear-gradient(to left, #c8cbce, #34363d)'
       case 1030:
         return 'linear-gradient(to left, #aec0b6, #5e7c6e)'
-      case 1063: 
+      case 1063:
         return 'linear-gradient(to left, #d4d6d9, #307a48)'
       case 1066:
         return 'linear-gradient(to left, #818486, #bdc2c2)'
@@ -339,9 +339,9 @@ function Homepage() {
                 <h5>Welcome back {currentUser && currentUser.displayName}!</h5>
                 <p>Check out today's weather information</p>
               </div>
-              <div className="logo" onClick={()=>setPopUp(!popup)}>
-                <img src="https://placehold.co/30x30" alt="logo" />
-                {popup ? <Popup/> : null}
+              <div className="logo" onClick={() => setPopUp(!popup)}>
+                <i className='bx bxs-note'></i>
+                {popup ? <Popup links={[{route:'/notes',name:'Go to Notes'}]}/> : null}
               </div>
             </div>
             <div className="upcoming-card">

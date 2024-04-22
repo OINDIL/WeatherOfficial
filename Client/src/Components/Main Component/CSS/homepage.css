@@ -85,6 +85,12 @@ aside {
 .welcome-text-logo .logo{
   position: relative;
 }
+.welcome-text-logo .logo i{
+  font-size: 1.5em;
+}
+.welcome-text-logo .logo i:hover{
+  cursor: pointer;
+}
 .upcoming-card {
   width: 100%;
   border-radius: 40px;

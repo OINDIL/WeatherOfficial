@@ -1,7 +1,9 @@
 import './App.css';
-import Homepage from './Components/Homepage';
+import Homepage from './Components/Main Component/Homepage';
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import { AuthProvider } from './Components/Context/AuthContext';
+import Notes from './Components/Main Component/Notes';
+import PrivateRouter from './Components/PrivateRoutes/PrivateRoute';
 
 function App() {
 
@@ -15,6 +17,10 @@ function App() {
       element:<>
         hello this is login
       </>
+    },
+    {
+      path:'/notes',
+      element:<PrivateRouter><Notes/></PrivateRouter>
     }
   ])
   return (

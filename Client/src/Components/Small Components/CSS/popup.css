@@ -1,0 +1,16 @@
+.popup-container{
+    padding: 1.5rem;
+    position: absolute;
+    background-color: #f0f8ff;
+    box-shadow: 0px 5px 19px 0px #d4d4d4;;
+    border-radius: 20px;
+    min-height: 200px;
+    min-width: 200px;
+    right: 0px;
+    z-index: 1;
+}
+.text-decoration{
+    text-decoration: none !important;
+    color: #1d1d1d;
+    margin-bottom: 5px;
+}

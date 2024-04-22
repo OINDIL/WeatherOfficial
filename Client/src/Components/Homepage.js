@@ -6,14 +6,21 @@ import SearchBar from './Small Components/SearchBar'
 import LoadingBar from 'react-top-loading-bar'
 import Error from './Small Components/Error';
 import CloseButton from './Small Components/CloseButton';
+import { useAuth } from './Context/AuthContext';
+import Popup from './Small Components/Popup';
 
 
 function Homepage() {
+  //? context
+  const {currentUser} = useAuth()
+
   //? states
   const [isActive, setIsActive] = useState(false); // for switch
   const [chartArr, setChartArr] = useState([0, 0, 0, 0, 0, 0, 0]);
   const [buttonClick, setButtonClick] = useState(false);
   const [searchedValue, setSearchedValue] = useState('kolkata');
+  //* Pop up Component states
+  const [popup, setPopUp] = useState(false)
   //* Loader Component states
   const [progress, setProgress] = useState(0);
   const [loaderOn, setLoaderOn] = useState(false);
@@ -329,11 +336,12 @@ function Homepage() {
           <aside>
             <div className="welcome-text-logo">
               <div className="text">
-                <h5>Welcome back oindil!</h5>
+                <h5>Welcome back {currentUser && currentUser.displayName}!</h5>
                 <p>Check out today's weather information</p>
               </div>
-              <div className="logo">
-                <img src="" alt="logo" />
+              <div className="logo" onClick={()=>setPopUp(!popup)}>
+                <img src="https://placehold.co/30x30" alt="logo" />
+                {popup ? <Popup/> : null}
               </div>
             </div>
             <div className="upcoming-card">

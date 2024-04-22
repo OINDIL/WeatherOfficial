@@ -82,6 +82,9 @@ aside {
   font-weight: 500;
   color: #797676;
 }
+.welcome-text-logo .logo{
+  position: relative;
+}
 .upcoming-card {
   width: 100%;
   border-radius: 40px;

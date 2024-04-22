@@ -1,8 +1,9 @@
 import React from 'react'
-
+import { useAuth } from '../Context/AuthContext'
 function Notes() {
+  const {currentUser} = useAuth()
   return (
-    <div>Notes</div>
+    <div>{JSON.stringify(currentUser.displayName)}</div>
   )
 }
 

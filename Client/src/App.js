@@ -4,6 +4,8 @@ import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import { AuthProvider } from './Components/Context/AuthContext';
 import Notes from './Components/Main Component/Notes';
 import PrivateRouter from './Components/PrivateRoutes/PrivateRoute';
+import Login from './Components/Small Components/Authentication/Login';
+import Signup from './Components/Small Components/Authentication/Signup';
 
 function App() {
 
@@ -15,7 +17,13 @@ function App() {
     {
       path:'/login',
       element:<>
-        hello this is login
+        <Login/>
+      </>
+    },
+    {
+      path:'/signup',
+      element:<>
+        <Signup/>
       </>
     },
     {

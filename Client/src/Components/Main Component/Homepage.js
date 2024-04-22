@@ -269,9 +269,7 @@ function Homepage() {
   const handleButtonClick = () => {
     setIsActive(!isActive);
   };
-
-
-
+console.log(currentUser.displayName);
   return (
     <>
       {loaderOn ? <LoadingBar color='#0C4CE3' progress={progress} onLoaderFinished={() => setProgress(0)} /> : null}
